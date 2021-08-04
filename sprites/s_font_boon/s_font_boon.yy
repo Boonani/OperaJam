@@ -17,8 +17,8 @@
   "width": 20,
   "height": 15,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Font",
+    "path": "texturegroups/Font",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -389,8 +389,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Oscar",
-    "path": "folders/Oscar.yy",
+    "name": "Sprites",
+    "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "s_font_boon",

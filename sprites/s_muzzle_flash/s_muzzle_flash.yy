@@ -17,8 +17,8 @@
   "width": 32,
   "height": 32,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "UI",
+    "path": "texturegroups/UI",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "User Interface",
+    "path": "folders/Sprites/User Interface.yy",
   },
   "resourceVersion": "1.0",
   "name": "s_muzzle_flash",

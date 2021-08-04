@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 function add_movement( dir,		amount	){
-
-	if live_call(dir , amount) return live_result;
 	
 	x_speed = lengthdir_x(speed_, direction_);
 	y_speed = lengthdir_y(speed_, direction_);
@@ -27,8 +25,6 @@ function add_friction() {
 
 
 function move(bounce) {
-		
-	if live_call(bounce) return live_result;
 	if speed_ = 0 exit;
 	
 	// tile_meeting_precise(x,y,"Collision"){ 
@@ -53,7 +49,6 @@ if object_get_parent(object_index) = o_bullet_parent{
 	if xcollide || ycollide { 
 		instance_destroy();	
 	}
-		
 	exit;	
 }
 	
@@ -79,13 +74,15 @@ switch object_index{
 		check_collision_x()
 		y+=y_speed;
 		check_collision_y()
-
-
-
 		exit;
 		break;
-
 }
+	
+		//default case. Custom movement must have an exit;
+		x+=x_speed;
+		check_collision_x()
+		y+=y_speed;
+		check_collision_y()
 	
 }
 

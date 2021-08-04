@@ -1,15 +1,19 @@
 /// @description Insert description here
 // You can write your code in this editor
-
 // Inherit the parent event
 event_inherited();
 
 enum e_state{ 
-	idle,
 	hit,
+	idle,
+	warning,
+	attack,
+	
 	size_
 }
-state = e_state.idle;
+entity_parent();
 
+
+state = e_state.idle;
 sprite[e_state.idle] = noone;
 sprite[e_state.hit] = noone;

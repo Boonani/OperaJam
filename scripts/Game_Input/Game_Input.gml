@@ -34,8 +34,8 @@ function create_input(){
 		
 		
 		pause : new input_actions(vk_escape),
-		action : new input_actions(ord("X")),
-		back : new input_actions(ord("Z")),
+		action : new input_actions(ord("E")),
+		back : new input_actions(ord("Q")),
 	}
 	
 	input_player_2 = { 

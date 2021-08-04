@@ -17,8 +17,8 @@
   "width": 21,
   "height": 16,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Enemy",
+    "path": "texturegroups/Enemy",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -73,8 +73,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "User Interface",
+    "path": "folders/Sprites/User Interface.yy",
   },
   "resourceVersion": "1.0",
   "name": "s_bullet",

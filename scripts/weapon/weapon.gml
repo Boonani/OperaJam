@@ -1,8 +1,6 @@
 // Script assets have changed for v2.3.0 see
 function weapon_parent() constructor {
 	
-	if live_call() return live_result;
-	
 	
 	name = "";
 	desc = "";
@@ -11,7 +9,7 @@ function weapon_parent() constructor {
 	sprite_bullet = s_bullet;
 	damage_base = 1;
 	damage_additional = 0;
-	damage_multiply = 0;
+	damage_multiply = 1;
 	crit_percent = 0;
 	crit_multiply = 1;
 	color = C_RED;
@@ -28,6 +26,11 @@ function weapon_parent() constructor {
 	range_additional = 0;
 	range_multiply = 1;
 	
+	
+	undamaged_enemies_damage_mod = 1;
+	
+	accuracy = 1; 
+	
 	base_attack_time = SEC*.25;
 	
 	instance_destroy_timer = SEC*4;
@@ -35,12 +38,12 @@ function weapon_parent() constructor {
 	base_attack_timer = 0;
 	damage_variance = 1;
 	sound_fire = noone;
-	
+	left_attack_speed = 1;
 	chaining = 0;
 	chaining_damage_mod = 0;
 	sine_intensity = 0;
 	homing = 0;
-	
+	horizontal_attack_speed_multiplier = 1;
 	extra_bullet = 0;
 	extra_bullet_direction_variance = 0;
 	extra_bullet_speed_speed_variance = 0;
@@ -55,8 +58,6 @@ function create_weapon (dmg , range, attack_speed) : weapon_parent() constructor
 }
 
 function create_player_bullet(_x, _y, _obj, player_slot){
-	if live_call(_x, _y, _obj, player_slot) return live_result;
-
 	var a = o_game.player[player_slot].wep;	
 
 	#macro DEPTH_BULLET -4000
@@ -88,17 +89,79 @@ function create_player_bullet(_x, _y, _obj, player_slot){
 			
 			debug(dd);
 			if abs(dd) <= 100 {
-				direction_ -= min(abs(dd), 20) * sign(dd);
-			}
-		//	debug("TEST");
-		//	add_movement(o_player.direction_,o_player.speed_ + 	a.speed_);
+				direction_ -= min(abs(dd), 15) * sign(dd);
+				}
 			}
 		}
-	
 	}
-	
-	sprite_set_live(a.sprite_bullet , 1);
-	
-
 	return i;
+}
+
+function Game_Player_Step_Event(input_struct , player_slot){
+if live_call(input_struct , player_slot) return live_result;
+
+
+x_attack_press = input_struct.right.check - input_struct.left.check;
+y_attack_press = input_struct.down.check -  input_struct.up.check;
+
+var dir = point_direction(0,0,x_attack_press, y_attack_press);
+
+
+if	input_struct.attack_right.pressed {
+	player[player_slot].shoot_direction = 0;
+}
+
+if	input_struct.attack_up.pressed {
+	player[player_slot].shoot_direction = 90;
+}
+
+if	input_struct.attack_left.pressed {
+	player[player_slot].shoot_direction = 180;
+}
+
+if	input_struct.attack_down.pressed {
+	player[player_slot].shoot_direction = 270;
+}
+
+	
+ 
+if player[player_slot].wep != noone { 
+
+	player[player_slot].wep.base_attack_timer--;
+	
+	
+	
+	if player[player_slot].wep.base_attack_timer <= 0 and player[player_slot].mana >= player[player_slot].mana_bullet_cost { 
+	
+	if	input_struct.attack_right.check ||
+		input_struct.attack_left.check ||
+		input_struct.attack_down.check || 
+		input_struct.attack_up.check{
+			
+			//deduct cost to our mana
+			player[player_slot].mana  -= player[player_slot].mana_bullet_cost;
+			//create bullet
+			player[player_slot].wep.base_attack_timer = player[player_slot].wep.base_attack_time;
+			var dis = 24;
+						
+			var xoffset = lengthdir_x(dis,player[player_slot].shoot_direction);
+			var yoffset = lengthdir_y(dis,player[player_slot].shoot_direction);
+					
+			with o_player { 
+				create_player_bullet(x+xoffset,y+yoffset,o_bullet_player, player_slot);
+					var xx = random_range(-1,1);
+					var yy = random_range(-1,1);
+					create_animation_effect(s_muzzle_flash,x+xoffset+xx,y+yoffset+yy,1,1,0,c_white,1);
+			}
+		}else{
+			player[player_slot].shoot_direction = 0;	
+		}
+	}
+}
+step_input(input_struct);
+
+player[player_slot].mana += player[player_slot].mana_regen;
+
+player[player_slot].mana = clamp(player[player_slot].mana,0,player[player_slot].mana_max);
+
 }

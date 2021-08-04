@@ -1,7 +1,7 @@
 /// @description 
 
 targets_ = [];
-damage_ = 0;
+damage = 0;
 
 alarm[0] = SEC*.1;
 

@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Misc",
-    "path": "folders/Oscar/Extensions/GMLive/Internal/Misc.yy",
+    "path": "folders/Extensions/GMLive/Internal/Misc.yy",
   },
   "resourceVersion": "1.0",
   "name": "GMLive_http",

@@ -17,8 +17,8 @@
   "width": 25,
   "height": 16,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Weapons",
+    "path": "texturegroups/Weapons",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "User Interface",
+    "path": "folders/Sprites/User Interface.yy",
   },
   "resourceVersion": "1.0",
   "name": "s_weapon",

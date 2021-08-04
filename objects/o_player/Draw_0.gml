@@ -1,6 +1,9 @@
 /// @description 
-if live_call() return live_result;
 
+
+draw_sprite_ext(s_tile_white,0,x,y+z_,xscale,yscale,angle,image_blend,image_alpha);
+
+/*
 draw_set_colour(c_lime);
 draw_rectangle(x-bbox_w/2,y-bbox_h/2,x+bbox_w/2,y+bbox_h/2,false)
 draw_set_colour(c_white);
@@ -14,3 +17,5 @@ for(i=0;i<dot_len;i++)
 	}
 	
 collision_active=[0,0,0,0]
+
+

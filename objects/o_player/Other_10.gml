@@ -3,7 +3,6 @@ if live_call() return live_result;
 
 
 
-
 //_x_input = o_game.input_player_1.right.check - o_game.input_player_1.left.check;
 //_y_input = o_game.input_player_1.down.check -  o_game.input_player_1.up.check;		
 
@@ -52,11 +51,14 @@ if  o_game.input_player_1.right.check ||
 	o_game.input_player_1.down.check ||
 	o_game.input_player_1.up.check
 { 
-	add_movement(dir, .7);
+	speed_target = lerp(speed_target,1.2,.4);
+	add_movement(dir, speed_target);
+}else{
+	speed_target = 0;	
 }
 
 
-
+interact_key =  o_game.input_player_1.action.pressed;
 
 
 

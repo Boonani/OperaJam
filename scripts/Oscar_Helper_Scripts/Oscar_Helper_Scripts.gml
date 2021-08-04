@@ -23,7 +23,42 @@ function create(_x, _y, _obj) {
 	return instance;
 }
 
+///@arg sprite
+///@arg x
+///@arg y
+///@arg angle
+///@arg frames
+///@arg target_array
+///@arg damage
+///@arg knockback
+///@arg sleep
+function create_hitbox(_sprite, _x, _y, _angle, _frames, _array, _damage, _knockback, _sleep) {
 
+	//here we access the object ID
+	var _hitbox = instance_create_layer(_x, _y, I, o_hitbox);
+	//After accessing the object id we can now modify the sprite
+	_hitbox.enemy_object_that_killed = object_index;//
+	_hitbox.id_ = id;
+	_hitbox.last_known_sprite = sprite_index;//
+	_hitbox.sprite_index = _sprite;
+	_hitbox.image_angle = _angle;
+	_hitbox.alarm[0] = _frames;
+	_hitbox.targets_ = _array;
+	_hitbox.damage = _damage;
+	_hitbox.knockback_ = _knockback;
+	_hitbox.sleep_ = _sleep;
+	_hitbox.obj_index = object_index;
+	_hitbox.creator_x = x;
+	_hitbox.creator_y = y;
+	_hitbox.creator = id;
+	_hitbox.visible = false;
+	//If we want to continue using the _hitbox id we can recall it with 
+	return _hitbox;
+}
+
+	
+	
+	
 
 #macro I "Instances"
 #macro MX mouse_x
@@ -249,6 +284,21 @@ function array_find_index(_value, _array) {
 	}
 	//if it cannot find it , it will return negative 1
 	return -1;
+}
+
+
+function array_has_value(_value, _array) {
+	var _array_size = array_length(_array);
+	//Look for value
+
+	for (var i =0;i< _array_size;i++){
+		if _value == _array[i]{
+			//found ya
+			return true;
+		}
+	}
+	//can't find it
+	return false;
 }
 
 
@@ -660,12 +710,12 @@ function easings(function_, start, change, time, timer) {  ///3t and then 5tr  /
 
 function return_gui_x(posx) {
 
-	var cl = camera_get_view_x(view_camera[0])
+	var cl = view_xport[0];
     
 	var off_x = posx - cl // x is the normal x position
       
 	// convert to gui
-	var off_x_percent = off_x / camera_get_view_width(view_camera[0])
+	var off_x_percent = off_x / view_wport[0];
        
 	return off_x_percent * display_get_gui_width();
 }
@@ -903,7 +953,7 @@ function create_sine_text(xx, yy, time, str, color, creator_struct, destroy_text
 
 function z_control(struct) {
 	
-	struct.z		 += struct.z_speed;
+	struct.z		+= struct.z_speed;
 	struct.z_speed += struct.gravity_;
 		
 	if struct.z >= 0{ 
@@ -1079,7 +1129,7 @@ part_system_depth(global.sys_bubble_outline,DEPTH_BEHIND_GAME)
 
 function create_animation_effect(_sprite, _x, _y, _image_speed, scale,angle,blend,alpha ) {
 
-	var _effect = instance_create_depth(_x, _y, -3000, o_tempoary_animation);
+	var _effect = instance_create_depth(_x, _y, -6000, o_animation_effect);
 	
 	with _effect{ 
 		sprite_index = _sprite;

@@ -1,12 +1,20 @@
 /// @description Insert description here
-// You can write your code in this editor
-
-// Inherit the parent event
 event_inherited();
 
-entity_enemy(5);
+entity_enemy(10);
+
+friction_ = .05;
+
+#macro DEPTH_ENEMY -4000
+
+depth = DEPTH_ENEMY;
+
+sprite[e_state.hit] = s_slime_hit;
+sprite[e_state.idle] = s_slime_idle;
+sprite[e_state.warning] = s_slime_idle;
+sprite[e_state.attack] = s_slime_idle;
 
 
-sprite[ sprite .idle] = s_slime_idle;
-sprite[sprite_index.hit] = s_slime_hit;
-
+scr_additional_idle_to_warning_code = function(){ 
+	
+}

@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Internal",
-    "path": "folders/Oscar/Extensions/GMLive/Internal.yy",
+    "path": "folders/Extensions/GMLive/Internal.yy",
   },
   "resourceVersion": "1.0",
   "name": "GMLive",
