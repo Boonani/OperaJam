@@ -17,8 +17,8 @@
   "width": 80,
   "height": 32,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Terrain",
+    "path": "texturegroups/Terrain",
   },
   "swatchColours": null,
   "gridX": 0,

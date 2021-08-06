@@ -17,8 +17,8 @@
   "width": 25,
   "height": 25,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Upgrades",
+    "path": "texturegroups/Upgrades",
   },
   "swatchColours": null,
   "gridX": 0,
