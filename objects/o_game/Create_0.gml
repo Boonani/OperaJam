@@ -9,6 +9,7 @@
 #macro SPAWNER_COUNT 14
 
 
+create(0,0,o_draw_enemy_warnings);
 
 time_text_y_offset = 0;
 
@@ -62,7 +63,7 @@ rules = {
 			}
 		}
 		
-		
+
 	var active_enemies = 0;	
 		with o_enemy_parent {
 			if state = e_state.attack || attack_timer <= SEC*.5 { 

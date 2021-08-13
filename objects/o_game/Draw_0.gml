@@ -4,12 +4,12 @@
 if live_call() return live_result;
 
 
+draw_text(20,20,"WAVE "+string(wave));
+
 
 
 for ( var i =0; i < ds_list_size(enemy_spawner_list); i++){ 
-	
-	draw_text(20,20+i*20,string(  i));
-	
+	draw_text(20,20+i*20,string(  i));	
 }
 
 

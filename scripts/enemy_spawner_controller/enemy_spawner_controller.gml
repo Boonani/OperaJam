@@ -36,9 +36,9 @@ function enemy_spawner_controller(){
 
 	 tutorial_spawner = new spawner_parent(o_enemy_charger,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
 
-
-
+	ds_list_clear(enemy_spawner_list);
 	ds_list_add(enemy_spawner_list,tutorial_spawner);
+
 	
 	
 
@@ -59,7 +59,7 @@ function restock_enemy_spawn_list() {
 
 
 
-
+		/*
 		ds_list_add(enemy_spawner_list,
 		charger_1,
 		bullet_1,
@@ -67,7 +67,9 @@ function restock_enemy_spawn_list() {
 		bullet_2,
 		charger_and_bullet_mix
 		
-		);
+		);*/
+		
+		
 }
 
 
@@ -116,6 +118,8 @@ function add_enemy_into_list(){
 		
 function add_enemy(spawner_differinciator, enemy_object_index) {
 	
+		debug("DIFF " +string(spawner_differinciator));
+	
 	with o_enemy_warning {
 		
 		if number = irandom(SPAWNER_COUNT) and spawn_next_enemy = noone  and !is_undefined(enemy_object_index){ 
@@ -149,7 +153,8 @@ with o_enemy_warning {
 
 
 if !instance_exists(o_enemy_parent) and can_spawn_enemies{ 
-
+	wave++;
+	
 	//-1 = no enemy detected
 	var list = enemy_spawner_list[| 0];
 		ds_list_delete(enemy_spawner_list,0);
@@ -168,7 +173,7 @@ if !instance_exists(o_enemy_parent) and can_spawn_enemies{
 	var enemy_object_index = list.j0;
 	
 	if enemy_object_index != -1 { 
-		debug(enemy_object_index);
+			
 		add_enemy(enemy_number, enemy_object_index);
 	}
 	
