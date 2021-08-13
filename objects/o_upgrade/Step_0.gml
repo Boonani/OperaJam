@@ -1,19 +1,16 @@
 /// @description 
 if live_call() return live_result;
+
+
+
+
+
 if !instance_exists(o_player) exit;
-
-sprite_set_live(s_tile_white,1);
-
 nearest_player = instance_nearest(x,y,o_player);
-
-
 var dis = point_distance(x,y,nearest_player.x,nearest_player.y);
 
 
 if dis <= grab_range {
-	
-	
-	
 	
 	if nearest_player.interact_key{ 
 		script_(nearest_player.slot);

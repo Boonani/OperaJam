@@ -5,8 +5,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "o_entity_parent",
-    "path": "objects/o_entity_parent/o_entity_parent.yy",
+    "name": "o_alive_parent",
+    "path": "objects/o_alive_parent/o_alive_parent.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -32,7 +32,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Objects",
-    "path": "folders/Objects.yy",
+    "path": "folders/Oscar/Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "o_player",

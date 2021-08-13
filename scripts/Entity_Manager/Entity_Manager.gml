@@ -18,7 +18,7 @@ function entity_parent() {
 	warning_easing_timer = 0;
 	warning_easing_time = SEC;
 
-	hit_flash_time = SEC*.55;
+	hit_flash_time = SEC*.25;
 	hit_flash_timer = 0;
 	
 	warning_time = SEC*1.5;

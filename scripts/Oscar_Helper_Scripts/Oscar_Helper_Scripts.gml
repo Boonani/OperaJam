@@ -110,6 +110,37 @@ function approach(_current, _target, _amount) {
 	    return max(_current-_amount, _target);
 	}
 }
+
+function instance_nearest_nth(pointx, pointy, object, n) {
+
+	
+	//
+	/// instance_nth_nearest(x,y,obj,n)
+	//
+	//  Similar to instance_nearest this gets the Xth nearest object
+	//	Returns the id of the nth nearest instance of an object
+	//  to a given point or noone if none is found.
+	//
+	//      x,y       point coordinates, real
+	//      obj       object index (or all), real
+	//      n         proximity, real
+	//
+	/// GMLscripts.com/license
+	{
+	    var list,nearest;
+
+	    n = min(max(1,n),instance_number(object));
+	    list = ds_priority_create();
+	    nearest = noone;
+	    with (object) ds_priority_add(list,id,distance_to_point(pointx,pointy));
+	    repeat (n) nearest = ds_priority_delete_min(list);
+	    ds_priority_destroy(list);
+	    return nearest;
+	}
+}
+
+
+
 function draw_shape(xx, yy, sides, angle, radius, color, alpha, fill, width)
 {
 
@@ -1129,7 +1160,7 @@ part_system_depth(global.sys_bubble_outline,DEPTH_BEHIND_GAME)
 
 function create_animation_effect(_sprite, _x, _y, _image_speed, scale,angle,blend,alpha ) {
 
-	var _effect = instance_create_depth(_x, _y, -6000, o_animation_effect);
+	var _effect = instance_create_depth(_x, _y, DEPTH_EFFECTS, o_animation_effect);
 	
 	with _effect{ 
 		sprite_index = _sprite;

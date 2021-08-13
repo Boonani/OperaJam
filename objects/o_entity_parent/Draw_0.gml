@@ -1,8 +1,5 @@
 /// @description Insert description here
-
-
-
-
+if live_call() return live_result;
 
 
 if hit_flash_timer <= hit_flash_time {
@@ -11,16 +8,12 @@ yscale = xscale;
 hit_flash_timer++;
 }
 
-if hit_flash_timer <= SEC*.06 {
-
-
-
+if hit_flash_timer <= SEC*.1 {
+	
 shader_set(sh_fill_with_image_blend);
 draw_sprite_ext(sprite_index,image_index,x,y+z_,xscale*image_xscale,yscale,angle,image_blend,image_alpha);
 shader_reset();
-	
+
 }else{
 draw_sprite_ext(sprite_index,image_index,x,y+z_,xscale*image_xscale,yscale,angle,image_blend,image_alpha);
-	
-	
 }

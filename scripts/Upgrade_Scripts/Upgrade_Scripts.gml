@@ -1,9 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
-
-
-
 function create_upgrade(_x, _y, _obj) {
 	var instance = instance_create_layer(_x,_y,I,_obj);
 	return instance;
@@ -20,35 +17,41 @@ enum e_upgrade {
 	
 }
 function re_add_upgrades_list(){ 
+	
 	with o_game { 
-	ds_list_add(upgrade_list, 
-	e_upgrade.horizontal_bullets,
-	e_upgrade.extra_bullets,
-	e_upgrade.strawberry,
-	e_upgrade.ricochet,
-	e_upgrade.undamaged_enemies,
-	);
+		ds_list_clear(upgrade_list);
+		ds_list_add(upgrade_list, 
+		e_upgrade.horizontal_bullets,
+		e_upgrade.extra_bullets,
+		//e_upgrade.strawberry,
+		e_upgrade.ricochet,
+		//e_upgrade.undamaged_enemies,
+		);
+		
+		ds_list_shuffle(upgrade_list);
 	}
 }
+
 /*
 function create_upgrade_custom(_x, _y, _obj) {
 	var instance = instance_create_layer(_x,_y,I,_obj);
 	return instance;
-}*/
+}
+*/
 
 function create_upgrade_random(_x, _y) {
 	
 	var list = o_game.upgrade_list;
 	ds_list_shuffle(o_game.upgrade_list);
 	
-	var upgrade_enum_ = ds_list_find_value(list, 0);
+	var upgrade_enum_ = ds_list_find_value(list	,	 0);
 	
 	if ds_list_empty(list){
 			re_add_upgrades_list();
-		upgrade_enum_ = ds_list_find_value(list, 0);
+			upgrade_enum_ = ds_list_find_value(list, 0);
 	}
-	var new_upgrade_struct_ = upgrade_struct(upgrade_enum_);
 	
+	var new_upgrade_struct_ = upgrade_struct(upgrade_enum_);
 	
 	var upgrade_object = create(_x,_y,o_upgrade);
 		upgrade_object.title = new_upgrade_struct_.title;
@@ -80,7 +83,7 @@ switch upgrade_enum_ {
 
 		function(slot) { 
 			with o_game.player[slot].wep { 
-						left_attack_speed += .5;
+						left_attack_speed *= .25;
 				}
 			}
 		);
@@ -91,7 +94,9 @@ switch upgrade_enum_ {
 		function(slot) { 
 				with o_game.player[slot].wep { 
 						extra_bullet += 1;
-						accuracy *= .8;
+						accuracy += .2;
+						
+						
 				}
 			}
 		);
@@ -113,14 +118,10 @@ switch upgrade_enum_ {
 
 	case e_upgrade.ricochet : return_value = new upgrade("BOOMERANG SHOT", "AFTER A BULLET HITS AN ENEMY,\nSPAWN A NEW BULLET TOWARDS THE NEAREST ENEMY", s_upgrade_boomerang,
 		function(slot) { 	
-				with o_game.player[slot] { 
-						if o_game.player[slot].hp != o_game.player[slot].hp_max { 
-							change_player_health(slot,2);
-						}else{
-							o_game.player[slot].hp_max += 1;
-							change_player_health(slot,1);
-					}
-				}
+			with o_game.player[slot].wep { 
+				spawn_new_bullet  += 1;
+			}
+		
 			}
 		);
 	break;

@@ -2,10 +2,7 @@
 // You can write your code in this editor
 
 
-if mouse_check_button_pressed(mb_left)
-	{
-		create(MX,MY,o_enemy_slime);
-	}
+
 /*
 if mouse_check_button(mb_left)
 	{

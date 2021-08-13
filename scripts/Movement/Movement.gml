@@ -25,6 +25,7 @@ function add_friction() {
 
 
 function move(bounce) {
+	if live_call(bounce) return live_result;
 	if speed_ = 0 exit;
 	
 	// tile_meeting_precise(x,y,"Collision"){ 
@@ -57,6 +58,7 @@ if object_get_parent(object_index) = o_bullet_parent{
 
 
 switch object_index{
+	
 	case o_player:	
 	if speed_ <= 0 exit; // No need to check for collisions
 

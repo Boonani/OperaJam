@@ -5,6 +5,7 @@ _x_input = false;
 _y_input = false;
 
 
+depth = DEPTH_PLAYER
 interact_key =  o_game.input_player_1.action.pressed;
 
 
